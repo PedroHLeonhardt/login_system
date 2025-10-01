@@ -9,6 +9,8 @@ class Usuario
     public function __construct($name, $email, $password)
     {
         $this->setName($name);
+        $this->setEmail($email);
+        $this->setPassword($password);
     }
 
     public function getName(): string
