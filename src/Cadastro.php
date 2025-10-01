@@ -20,6 +20,15 @@ class Usuario
 
     public function setName($name)
     {
+        if (empty($name))
+        {
+            throw new InvalidArgumentException("Este campo é obrigatório");
+        }
+
+        if (strlen($name) < 6)
+        {
+            throw new InvalidArgumentException("Seu nome deve conter mais de 5 caracteres");
+        }
         $this->name = $name;
     }
 
@@ -30,6 +39,10 @@ class Usuario
 
     public function setEmail($email)
     {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL))
+        {
+            throw new InvalidArgumentException("Email inválido");
+        }
         $this->email = $email;
     }
 
@@ -40,6 +53,10 @@ class Usuario
 
     public function setPassword($password)
     {
+        if (strlen($password) < 6)
+        {
+            throw new InvalidArgumentException("Sua senha deve conter no mínimo 6 digitos");
+        }
         $this->password = $password;
     }
 }
